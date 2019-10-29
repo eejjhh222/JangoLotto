@@ -18,10 +18,15 @@ from django.urls import include, path
 from django.conf.urls import url
 import django.contrib.auth.views
 
-import myApp.views
+# from myApp import views
+
 
 urlpatterns = [
-    path('myApp/', include('myApp.urls', namespace='myApp')),
-    url(r'^$', myApp.views.index(''), name='index'),
-    # path('admin/', admin.site.urls),
+    path('myApp/', include('myApp.urls')),
+
+    # path('myApp/', views.index, name='index'),
+
+    # url(r'^$', myApp.views.index(''), name='index'),
+    # path('', myApp.views.index, name='index'),
+    path('admin/', admin.site.urls),
 ]
