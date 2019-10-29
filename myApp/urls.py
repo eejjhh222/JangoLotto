@@ -16,13 +16,15 @@ Including another URLconf
 from django.urls import path, re_path
 from django.conf.urls import url
 
-from . import views
+from .views.view import *
+from .views.hi import *
+# from .views import *
 
 app_name = 'myApp'
 urlpatterns = [
+    path('hi', say_hi),
     # url(r'^$', views.index, name='index'),
     # url(r'$', views.index),
-    # path('', views.index, name='index'),
-    path('', views.index, name='index'),
+    path('', index, name='index'),
     # url(r'^$', views.index, name='index'),
 ]
