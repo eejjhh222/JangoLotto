@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lotto',
     'getCron',
-    'myApp.apps',
+    'myApp',
 ]
 
 MIDDLEWARE = [

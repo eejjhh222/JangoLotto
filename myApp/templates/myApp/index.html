@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-This is index.html
+
+
+{% if latest_question_list %}
+<ul>
+    {% for question in latest_question_list %}
+    <li><a href="/myApp/html/{{question.id}}">{{question.question_text}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No myApp art available.</p>
+{% endif %}
+
 </body>
 </html>

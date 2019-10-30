@@ -21,10 +21,13 @@ from .views.hi import *
 # from .views import *
 
 app_name = 'myApp'
+
 urlpatterns = [
     path('hi', say_hi),
     # url(r'^$', views.index, name='index'),
     # url(r'$', views.index),
     path('', index, name='index'),
+    path('html', index_html, name='index_html'),
+    path('html/<int:question_id>', detail, name='detail')
     # url(r'^$', views.index, name='index'),
 ]
