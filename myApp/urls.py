@@ -28,6 +28,7 @@ urlpatterns = [
     # url(r'$', views.index),
     path('', index, name='index'),
     path('html', index_html, name='index_html'),
-    path('html/<int:question_id>', detail, name='detail')
+    path('html/<int:question_id>/', detail, name='detail'),
+    path('html/<int:question_id>/vote/', vote, name='vote')
     # url(r'^$', views.index, name='index'),
 ]
