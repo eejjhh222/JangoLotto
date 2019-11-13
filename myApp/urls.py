@@ -29,6 +29,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('html', index_html, name='index_html'),
     path('html/<int:question_id>/', detail, name='detail'),
-    path('html/<int:question_id>/vote/', vote, name='vote')
+    path('html/<int:question_id>/vote/', vote, name='vote'),
+path('<int:question_id>/results/', results, name='results'),     # /polls/5/results/
     # url(r'^$', views.index, name='index'),
 ]
