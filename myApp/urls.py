@@ -18,18 +18,16 @@ from django.conf.urls import url
 
 from .views.view import *
 from .views.hi import *
-# from .views import *
 
 app_name = 'myApp'
 
 urlpatterns = [
     path('hi', say_hi),
-    # url(r'^$', views.index, name='index'),
-    # url(r'$', views.index),
     path('', index, name='index'),
     path('html', index_html, name='index_html'),
+    path('html/parent', parent, name='parent'),
     path('html/<int:question_id>/', detail, name='detail'),
     path('html/<int:question_id>/vote/', vote, name='vote'),
-path('<int:question_id>/results/', results, name='results'),     # /polls/5/results/
-    # url(r'^$', views.index, name='index'),
+    path('html/<int:question_id>/results/', results, name='results'),
+
 ]

@@ -45,3 +45,7 @@ def vote(request, question_id):
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'myApp/results.html', {'question': question})
+
+
+def parent(request):
+    return render(request, 'parent/base_books.html')
