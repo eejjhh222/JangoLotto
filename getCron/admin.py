@@ -1,3 +1,5 @@
 from django.contrib import admin
+from getCron.models import lotto_data
 
-# Register your models here.
+
+admin.site.register(lotto_data)
