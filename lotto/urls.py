@@ -23,6 +23,7 @@ from .views.view import *
 
 urlpatterns = [
     path('myApp/', include('myApp.urls', namespace='myApp')),
+    path('lotto/', include('getCron.urls', namespace='getCron')),
     # url(r'^$', myApp.views.index(''), name='index'),
     path('admin/', admin.site.urls),
     path('', index),
