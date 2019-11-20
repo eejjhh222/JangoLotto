@@ -18,6 +18,7 @@ google-pasta==0.1.7
 grpcio==1.23.0
 h5py==2.10.0
 idna==2.8
+importlib-metadata==0.23
 ipykernel==5.1.2
 ipython==7.8.0
 ipython-genutils==0.2.0
@@ -35,6 +36,8 @@ lxml==4.4.1
 Markdown==3.1.1
 MarkupSafe==1.1.1
 mistune==0.8.4
+more-itertools==7.2.0
+mysqlclient==1.4.5
 nbconvert==5.6.0
 nbformat==4.4.0
 notebook==6.0.1
@@ -72,3 +75,4 @@ webencodings==0.5.1
 Werkzeug==0.16.0
 widgetsnbextension==3.5.1
 wrapt==1.11.2
+zipp==0.6.0
