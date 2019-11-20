@@ -23,6 +23,7 @@ app_name = 'myApp'
 
 urlpatterns = [
     path('hi', say_hi),
+    path('form', inputForm),
     path('', index, name='index'),
     path('html', index_html, name='index_html'),
     path('html/parent', parent, name='parent'),
