@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'getCron:get_number' %}" method="get">
+    회차 :
+    <input name="round_id" id="round_id">
+    <input type="submit" value="조회">
+</form>
+</body>
+</html>

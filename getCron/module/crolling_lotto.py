@@ -55,7 +55,7 @@ def get_looto_num(num):
     soup = BeautifulSoup(html, 'html.parser')
     # article > div:nth-child(2) > div > div.win_result > h4 > strong
     round = soup.select('#article > div:nth-child(2) > div > div.win_result > h4 > strong')
-    print(round[0].text)
+    # print(round[0].text)
     # sys.exit()
     if eq(round[0].text, '회'):
     # if '회' in my_titles[0].text:

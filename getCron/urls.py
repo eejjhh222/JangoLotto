@@ -21,5 +21,9 @@ app_name = 'getCron'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('getNumber', views.getNumber, name='detail'),
+    path('lottoNumber', views.lotto_number, name='lotto_number'),
+    path('getNumber', views.get_number, name='get_number'),
+    path('saveNumber', views.save_number, name='save_number'),
+    path('listNumber', views.list_number, name='list_number'),
+    # path('getNumber/<int:round_id>/', views.get_number, name='get_number'),
 ]

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <style>
+        .viewTable{
+            border-spacing: 0px 0px;
+            border-padding: 0px 0px;
+        }
+        .viewTable td{
+            text-align: center;
+            width:50px;
+            border: 1px solid #444444;
+        }
+    </style>
+</head>
+<body>
+<span>lotto list</span>
+<table class="viewTable">
+    <tr>
+        <td>회차</td>
+        <td>.1</td>
+        <td>.2</td>
+        <td>.3</td>
+        <td>.4</td>
+        <td>.5</td>
+        <td>.6</td>
+        <td>보너스번호</td>
+    </tr>
+    {% for lotto in lotto_list %}
+    <tr>
+        <td>{{ lotto.round }}</td>
+        <td>{{ lotto.prize1 }}</td>
+        <td>{{ lotto.prize2 }}</td>
+        <td>{{ lotto.prize3 }}</td>
+        <td>{{ lotto.prize4 }}</td>
+        <td>{{ lotto.prize5 }}</td>
+        <td>{{ lotto.prize6 }}</td>
+        <td>{{ lotto.bonus }}</td>
+    </tr>
+
+
+    {% endfor %}
+</table>
+</body>
+</html>

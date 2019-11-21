@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로또번호 {{ round }}회차</title>
+    <style>
+        .viewTable{
+            border-spacing: 0px 0px;
+            border-padding: 0px 0px;
+        }
+        .viewTable td{
+            text-align: center;
+            width:50px;
+            border: 1px solid #444444;
+        }
+    </style>
+</head>
+<body>
+<form action="{% url 'getCron:save_number' %}" method="post">
+{% csrf_token %}
+{% for field in form.hidden_fields %}
+    {{field}}
+{% endfor %}
+<p>{{ round }}회</p>
+    <table class="viewTable">
+        <tr>
+            <td>.1</td>
+            <td>.2</td>
+            <td>.3</td>
+            <td>.4</td>
+            <td>.5</td>
+            <td>.6</td>
+            <td>보너스번호</td>
+        </tr>
+        <tr>
+            {% for prize in prize_list %}
+            <td>{{ prize }}</td>
+            {% endfor %}
+            <td>{{ bonus }}</td>
+        </tr>
+
+    </table>
+<br>
+
+    <input type="submit" value="DB에 저장하기">
+</form>
+</body>
+</html>
