@@ -12,7 +12,7 @@ class lotto_data(models.Model):
     prize5 = models.IntegerField(default=0)
     prize6 = models.IntegerField(default=0)
     bonus = models.IntegerField(default=0)
-    drawing_day = models.DateTimeField()
+    drawing_day = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return "str : %d %d %d %d %d %d %d %d" \

@@ -154,7 +154,7 @@ def save_number(request):
 
 def list_number(request):
     try:
-        lotto_list_all = lotto_data.objects.all()
+        lotto_list_all = lotto_data.objects.all().order_by('round')
     except (KeyError, lotto_data.DoesNotExist):
         # Redisplay the question voting form.
         return HttpResponse("empty list")
