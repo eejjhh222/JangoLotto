@@ -3,17 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>로또번호 {{ round }}회차</title>
-    <style>
-        .viewTable{
-            border-spacing: 0px 0px;
-            border-padding: 0px 0px;
-        }
-        .viewTable td{
-            text-align: center;
-            width:50px;
-            border: 1px solid #444444;
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/getCron/css/lottoNumber.css' %}" />
 </head>
 <body>
 <form action="{% url 'getCron:save_number' %}" method="post">

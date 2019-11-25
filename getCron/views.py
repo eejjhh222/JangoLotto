@@ -127,29 +127,6 @@ def save_number(request):
 
     # selected_choice = lotto_data.choice_set.get(sround=round_id)
     return HttpResponse("save round")
-'''
-    try:
-        selected_choice = lottodata.choice_set.get(sround=round_id)
-        print(selected_choice)
-    except (KeyError, lottodata.DoesNotExist):
-        selected_choice.round = round_id
-        selected_choice.prize1 = int(request.POST['prize1'])
-        selected_choice.prize2 = int(request.POST['prize2'])
-        selected_choice.prize3 = int(request.POST['prize3'])
-        selected_choice.prize4 = int(request.POST['prize4'])
-        selected_choice.prize5 = int(request.POST['prize5'])
-        selected_choice.prize6 = int(request.POST['prize6'])
-        selected_choice.bonus = int(request.POST['bonus'])
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponse("save round")
-        # return HttpResponseRedirect(reverse('getCron:list_number'))
-    else:
-        # Redisplay the question voting form.
-        return HttpResponse("exist round")
-'''
 
 
 def list_number(request):
