@@ -1,0 +1,9 @@
+ .viewTable{
+            border-spacing: 0px 0px;
+            border-padding: 0px 0px;
+        }
+        .viewTable td{
+            text-align: center;
+            width:50px;
+            border: 1px solid #444444;
+        }
