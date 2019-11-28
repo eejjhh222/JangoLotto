@@ -6,6 +6,10 @@ from django.http import HttpResponseRedirect
 from .module.crolling_lotto import *
 from getCron.models import lotto_data
 from django.urls import reverse
+import logging
+
+
+logger = logging.getLogger('mylogger')
 
 
 class prizeNumberForm(forms.Form):
@@ -101,6 +105,7 @@ def save_number(request):
     round_id = int(request.POST['round'])
 
     if lotto_data.objects.filter(round=round_id).exists():
+        logger.error('already exist')
         pass
     else:
         prize1 = int(request.POST['prize1'])
