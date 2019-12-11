@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>크롤링</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'getCron/css/lottoNumber.css' %}" />
+    <script src="{% static '/js/vue.js' %}"></script>
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+</head>
+<body>
+    <span>로또번호 크롤링 시작</span>
+    <button onclick="start();">시작</button>
+    <button onclick="stop();">종료</button>
+</body>
+
+
+<script src="{% static 'getCron/js/crolling.js' %}"></script>
+</html>

@@ -58,7 +58,7 @@ def get_number(request):
     round_id = int(request.GET['round_id'])
 #     lotto_data = get_object_or_404(lotto_data, pk=round)
 #     round_id = int(round)
-    round_id = int(round_id)
+#     round_id = int(round_id)
     res = looto_process(round_id)
 
     if res == "error":
@@ -75,6 +75,7 @@ def get_number(request):
         print('prize6 : ' + prize_list[5])
         print('bonus : ' + prize_list[6][0])
         '''
+
 
         bonus = prize_list[6][0]
         del(prize_list[6])
@@ -159,3 +160,11 @@ def list_number(request):
             'lotto_list': lotto_list
         }
         return render(request, 'lottoNumber_list.html', context)
+
+
+def apiTest(request):
+    return HttpResponse("api")
+
+
+def crolling_number(request):
+    return render(request, 'lottoNumber_crolling.html')

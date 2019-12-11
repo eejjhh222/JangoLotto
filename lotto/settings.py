@@ -24,6 +24,7 @@ SECRET_KEY = '-51)haf2iuvtt7&ys$yvj%$ut3a#!cm3$hy*bzjto$+$wm4l@g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = [
     'mydjango.com'
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'lotto',
     'getCron',
     'myApp',
