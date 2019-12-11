@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.urls import path, re_path
 from django.conf.urls import url
-
 from .views.view import *
 from .views.hi import *
 
@@ -30,5 +29,4 @@ urlpatterns = [
     path('html/<int:question_id>/', detail, name='detail'),
     path('html/<int:question_id>/vote/', vote, name='vote'),
     path('html/<int:question_id>/results/', results, name='results'),
-
 ]
