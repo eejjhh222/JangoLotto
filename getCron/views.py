@@ -7,6 +7,8 @@ from .module.crolling_lotto import *
 from getCron.models import lotto_data
 from django.urls import reverse
 import logging
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 logger = logging.getLogger('mylogger')
@@ -54,15 +56,12 @@ def lotto_number(request):
 
 
 # def get_number(request, round_id):
-def get_number(request):
-    round_id = int(request.GET['round_id'])
-#     lotto_data = get_object_or_404(lotto_data, pk=round)
-#     round_id = int(round)
-#     round_id = int(round_id)
-    res = looto_process(round_id)
 
+
+def crolling_lotto(round_id):
+    res = looto_process(round_id)
     if res == "error":
-        return HttpResponse('error')
+        return 'error'
     else:
         prize_list = res[round_id]
 
@@ -90,16 +89,28 @@ def get_number(request):
             , 'prize6': prize_list[5]
             , 'bonus': bonus
         }
-        form = prizeNumberForm(data)
 
-        context = {
-            'round': round_id
-            , 'form': form
-            , 'prize_list': prize_list
-            , 'bonus': bonus
-        }
+        return data, prize_list
 
-        return render(request, 'lottoNumber_view.html', context)
+
+def get_number(request):
+    round_id = int(request.GET['round_id'])
+#     lotto_data = get_object_or_404(lotto_data, pk=round)
+#     round_id = int(round)
+#     round_id = int(round_id)
+    data, prize_list = crolling_lotto(round_id)
+    bonus = data['bonus']
+
+    form = prizeNumberForm(data)
+
+    context = {
+        'round': round_id
+        , 'form': form
+        , 'prize_list': prize_list
+        , 'bonus': bonus
+    }
+
+    return render(request, 'lottoNumber_view.html', context)
 
 
 def save_number(request):
@@ -162,8 +173,14 @@ def list_number(request):
         return render(request, 'lottoNumber_list.html', context)
 
 
-def apiTest(request):
-    return HttpResponse("api")
+@csrf_exempt #csrf 사용안하기
+def numberApi(request):
+    # print(request.is_ajax())
+    data = json.loads(request.body)
+    round_id = data['round']
+    data, prize_list = crolling_lotto(round_id)
+    print(data)
+    return HttpResponse(json.dumps(data))
 
 
 def crolling_number(request):

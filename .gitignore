@@ -2,3 +2,4 @@ Lib/site-packages/
 .idea/
 *.pyc
 static/
+logs/
