@@ -8,12 +8,10 @@ from bs4 import BeautifulSoup
 from multiprocessing import Pool
 import time
 
-
-
 # r = requests.get('http://hanbit.co.kr')
 # print(r.json)
-
 # tree = lxml.html.parse('full_book_list.html')
+
 
 def test1():
     tree = lxml.html.parse(urlopen('http://www.hanbit.co.kr/store/books/full_book_list.html'))
@@ -25,6 +23,7 @@ def test1():
     h1 = html.xpath('//h1')[0]
     print(h1.attrib)
 
+
 def extraction_num(arrage_num):
     prize_number = []
 
@@ -34,6 +33,7 @@ def extraction_num(arrage_num):
         prize_number.append(num.text)
 
     return prize_number
+
 
 def get_looto_num(num):
     numList = []
@@ -92,22 +92,29 @@ def looto_process(n):
 
     if eq(res, 'end') or eq(res, 'error'):
         return lotto_num_list;
-
-    lotto_num_list[n] = res
+    # print(res)
+    lotto_num_list = {
+        'round_id': n,
+        'game': res
+    }
 
     return lotto_num_list
 
 
-
-
-# if __name__ == '__main__':
-def getStartLotto():
+def getStartLotto(endRound = 889):
     lotto_num_list = {}
     pool = Pool(5) # n개의 프로세스를 사용합니다.
-    lotto_num_list = pool.map(looto_process, range(1,877)) # pool에 일을 던져줍니다.
-    print(lotto_num_list)
+    lotto_num_list = pool.map(looto_process, range(1, int(endRound)+1)) # pool에 일을 던져줍니다.
+    # print(lotto_num_list)
+    return lotto_num_list
+
+
+if __name__ == '__main__':
+    getStartLotto()
+    exit()
 
 '''
+
 round = 877
 while True:
     res = get_looto_num(str(round))
@@ -115,6 +122,7 @@ while True:
     if eq(res,'end') or eq(res,'error'):
         break;
     lotto_num_list[round] = res
+    print(res)
     round += 1
 '''
 

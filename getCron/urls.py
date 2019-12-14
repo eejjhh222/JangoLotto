@@ -27,5 +27,6 @@ urlpatterns = [
     path('listNumber', views.list_number, name='list_number'),
     path('crollingNumber', views.crolling_number, name='crolling_number'),
     path('numberApi', views.numberApi, name='numberApi'),
+    path('crollintIntoSave', views.crolling_into_db, name='crollintIntoSave'),
     # path('getNumber/<int:round_id>/', views.get_number, name='get_number'),
 ]

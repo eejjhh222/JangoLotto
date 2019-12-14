@@ -55,15 +55,12 @@ def lotto_number(request):
     return render(request, 'lottoNumber_form.html')
 
 
-# def get_number(request, round_id):
-
-
 def crolling_lotto(round_id):
     res = looto_process(round_id)
     if res == "error":
         return 'error'
     else:
-        prize_list = res[round_id]
+        prize_list = res['game']
 
         '''print('round : %d' % round_id)
         print('prize1 : ' + prize_list[0])
@@ -113,20 +110,19 @@ def get_number(request):
     return render(request, 'lottoNumber_view.html', context)
 
 
-def save_number(request):
-    round_id = int(request.POST['round'])
-
-    if lotto_data.objects.filter(round=round_id).exists():
+def save_number_into_db(game):
+    if lotto_data.objects.filter(round=game['round']).exists():
         logger.error('already exist')
-        pass
+        return "fail"
     else:
-        prize1 = int(request.POST['prize1'])
-        prize2 = int(request.POST['prize2'])
-        prize3 = int(request.POST['prize3'])
-        prize4 = int(request.POST['prize4'])
-        prize5 = int(request.POST['prize5'])
-        prize6 = int(request.POST['prize6'])
-        bonus = int(request.POST['bonus'])
+        round_id = int(game['round'])
+        prize1 = int(game['prize1'])
+        prize2 = int(game['prize2'])
+        prize3 = int(game['prize3'])
+        prize4 = int(game['prize4'])
+        prize5 = int(game['prize5'])
+        prize6 = int(game['prize6'])
+        bonus = int(game['bonus'])
         # lottodata = lottoObj(round_id, prize1, prize2, prize3, prize4, prize5, prize6, bonus)
         # print(lottodata.round)
         ld = lotto_data(round=round_id
@@ -139,6 +135,22 @@ def save_number(request):
                         , bonus=bonus
                         )
         ld.save()
+        return "save"
+
+
+def save_number(request):
+    round_id = int(request.POST['round'])
+    game = {'round': round_id
+            , 'prize1': int(request.POST['prize1'])
+            , 'prize2': int(request.POST['prize2'])
+            , 'prize3': int(request.POST['prize3'])
+            , 'prize4': int(request.POST['prize4'])
+            , 'prize5': int(request.POST['prize5'])
+            , 'prize6': int(request.POST['prize6'])
+            , 'bonus': int(request.POST['bonus'])
+        }
+    res = save_number_into_db(game)
+    print(res)
 
     return HttpResponseRedirect(reverse('getCron:list_number'))
 
@@ -185,3 +197,26 @@ def numberApi(request):
 
 def crolling_number(request):
     return render(request, 'lottoNumber_crolling.html')
+
+
+def crolling_into_db(request):
+    res = getStartLotto(889)
+    # print(type(res))
+    for game in res:
+        # print(game['round_id'])
+        # print(game['game'])
+        data = {'round': game['round_id']
+            , 'prize1': int(game['game'][0])
+            , 'prize2': int(game['game'][1])
+            , 'prize3': int(game['game'][2])
+            , 'prize4': int(game['game'][3])
+            , 'prize5': int(game['game'][4])
+            , 'prize6': int(game['game'][5])
+            , 'bonus': int(game['game'][6][0])
+                }
+        # print(data)
+        res = save_number_into_db(data)
+        print(res)
+        time.sleep(1)
+
+    return HttpResponse("end save")
