@@ -5,49 +5,85 @@
     <title>로또번호 리스트</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'getCron/css/lottoNumber.css' %}" />
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="{% static '/js/vue.js' %}"></script>
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
 </head>
 <body>
-<div  id="titleText">
-<span>[[message]]</span>
-</div>
+    <main id="app">
+        <template>
+            <div  id="titleText">
+            <span>[[message]]</span>
+            </div>
 
-<table class="viewTable">
-    <tr>
-        <td>회차</td>
-        <td>.1</td>
-        <td>.2</td>
-        <td>.3</td>
-        <td>.4</td>
-        <td>.5</td>
-        <td>.6</td>
-        <td>보너스번호</td>
-    </tr>
-    {% for lotto in lotto_list %}
-    <tr>
-        <td>{{ lotto.round }}</td>
-        <td>{{ lotto.prize1 }}</td>
-        <td>{{ lotto.prize2 }}</td>
-        <td>{{ lotto.prize3 }}</td>
-        <td>{{ lotto.prize4 }}</td>
-        <td>{{ lotto.prize5 }}</td>
-        <td>{{ lotto.prize6 }}</td>
-        <td>{{ lotto.bonus }}</td>
-    </tr>
+            <table id="" class="viewTable">
+                <tr>
+                    <td>회차</td>
+                    <td>.1</td>
+                    <td>.2</td>
+                    <td>.3</td>
+                    <td>.4</td>
+                    <td>.5</td>
+                    <td>.6</td>
+                    <td>보너스번호</td>
+                </tr>
+                <!--{% for lotto in lotto_list %}
+                <tr>
+                    <td>{{ lotto.round }}</td>
+                    <td>{{ lotto.prize1 }}</td>
+                    <td>{{ lotto.prize2 }}</td>
+                    <td>{{ lotto.prize3 }}</td>
+                    <td>{{ lotto.prize4 }}</td>
+                    <td>{{ lotto.prize5 }}</td>
+                    <td>{{ lotto.prize6 }}</td>
+                    <td>{{ lotto.bonus }}</td>
+                </tr>
+                {% endfor %}-->
 
+                <tr v-for="(lotto, index) in lottoList" :key="index">
+                    <td>[[lotto.round]]</td>
+                    <td>[[lotto.prize1]]</td>
+                    <td>[[lotto.prize2]]</td>
+                    <td>[[lotto.prize3]]</td>
+                    <td>[[lotto.prize4]]</td>
+                    <td>[[lotto.prize5]]</td>
+                    <td>[[lotto.prize6]]</td>
+                    <td>[[lotto.bonus]]</td>
+                </tr>
 
-    {% endfor %}
-</table>
-
+            </table>
+    </template>
+</main>
 
 <script>
-       var tt = new Vue({
-        delimiters: ['[[', ']]'],
-        el: '#titleText',
-        data: {
-            message: '로또번호 리스트'
+       new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#app',
+            data: {
+                message: '로또번호 리스트',
+                lottoList: []
+            },
+            created: function () {
+                this.getLotto();
+            },
+            methods: {
+                getLotto: function () {
+                    {% for lotto in lotto_list %}
+                        this.lottoList.push({
+                            'round' : {{lotto.round}},
+                            'prize1' : {{lotto.prize1}},
+                            'prize2' : {{lotto.prize2}},
+                            'prize3' : {{lotto.prize3}},
+                            'prize4' : {{lotto.prize4}},
+                            'prize5' : {{lotto.prize5}},
+                            'prize6' : {{lotto.prize6}},
+                            'bonus' : {{lotto.bonus}},
+                        })
+                    {% endfor %}
+
+                }
             }
-        })
+
+        });
     </script>
 </body>
 </html>
