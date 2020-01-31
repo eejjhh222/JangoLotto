@@ -217,6 +217,6 @@ def crolling_into_db(request):
         # print(data)
         res = save_number_into_db(data)
         print(res)
-        time.sleep(1)
+        # time.sleep(1)
 
     return HttpResponse("end save")
