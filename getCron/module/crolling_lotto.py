@@ -38,6 +38,9 @@ def extraction_num(arrage_num):
 def get_looto_num(num):
     numList = []
     req = requests.get('https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo='+num)
+    #http://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=[NUM]
+
+
     # HTML 소스 가져오기
     html = req.text
     '''
