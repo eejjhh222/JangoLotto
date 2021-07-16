@@ -26,6 +26,7 @@ urlpatterns = [
     path('myApp/', include('myApp.urls', namespace='myApp')),
     path('lotto/', include('getCron.urls', namespace='getCron')),
     path('funTest/', include('funTest.urls', namespace='funTest')),
+    path('myData/', include('myData.urls', namespace='myData')),
     # url(r'^$', myApp.views.index(''), name='index'),
     path('admin/', admin.site.urls),
     path('', index),
