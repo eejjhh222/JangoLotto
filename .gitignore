@@ -1,5 +1,5 @@
 Lib/site-packages/
 .idea/
 *.pyc
-static/
+/static/
 logs/
