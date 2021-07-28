@@ -22,4 +22,5 @@ app_name = 'myData'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('static', views.static, name='static'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
