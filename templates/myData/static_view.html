@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+</head>
+<body>
+<h1>데이터 보기</h1>
+{% for data in staticData %}
+<div>{{ data }}</div>
+{% endfor %}
+</body>
+</html>
