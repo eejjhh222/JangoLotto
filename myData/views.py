@@ -1,8 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render
-
+from django.conf import settings
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from pylab import savefig
+
 import warnings
 import numpy as np
 import seaborn as sns
@@ -23,14 +27,22 @@ def static(request):
     static_root = "static/image/"
     titanic = sns.load_dataset('titanic')
     em_pie = titanic['embarked'].value_counts()
-    em_pie.plot(kind='pie', autopct='%1.1f%%', figsize=(10, 6))  # 원그래프
-    sns.countplot(data=titanic, x='embarked')  # 막대그래프
+    circleGraph = em_pie.plot(kind='pie', autopct='%1.1f%%', figsize=(10, 6))  # 원그래프
+    plt.savefig(static_root + "circle.png")
+    plt.clf()
 
-    # join1 = sns.jointplot(x="age", y="fare", data=titanic)
-    # join1.savefig(static_root + "join1.png")
-    # join2 = sns.jointplot(x="age", y="fare", data=titanic, kind="kde")
-    # join2.savefig(static_root + "join2.png")
-    # plt.clf()
+    stickGraph = sns.countplot(data=titanic, x='embarked')  # 막대그래프
+    plt.savefig(static_root + "stick.png")
+    plt.clf()
+
+    join1 = sns.jointplot(x="age", y="fare", data=titanic)
+    join1.savefig(static_root + "join1.png")
+    plt.clf()
+
+    join2 = sns.jointplot(x="age", y="fare", data=titanic, kind="kde")
+    join2.savefig(static_root + "join2.png")
+    plt.clf()
+
     dataSet = [];
     for data in titanic.itertuples():
         dataSet.insert(data.Index, {
@@ -47,5 +59,13 @@ def static(request):
         if(data.Index > 10) :
             break
 
-    context = {'staticData': dataSet}
+    context = {
+        'staticData': dataSet
+        , "baseImgUrl": "/" + static_root
+        , "stickImgUrl": "stick.png"
+        , "circleImgUrl": "circle.png"
+        , "joinImgUrl": "join1.png"
+        , "join2ImgUrl": "join2.png"
+    }
+
     return render(request, 'mydata/static_view.html', context)
