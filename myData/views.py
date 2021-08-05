@@ -43,6 +43,26 @@ def static(request):
     join2.savefig(static_root + "join2.png")
     plt.clf()
 
+    sns.boxplot(data=titanic, x='sex', y='age', hue='class')
+    plt.savefig(static_root + "boxplot.png")
+    plt.clf()
+    #복수그래프
+    g = sns.FacetGrid(data=titanic, col='sex', row='survived')
+    g.map(plt.hist, 'age')
+    plt.savefig(static_root + "FacetGrid.png")
+    plt.clf()
+
+    # 복수그래프
+    # g.map(plt.scatter, 'age', 'fare')
+    # plt.savefig(static_root + "FacetGrid2.png")
+    # plt.clf()
+
+    #히스토그램/커널밀도 그래프
+    sns.distplot(titanic['fare'])
+    plt.savefig(static_root + "histKde.png")
+    plt.clf()
+
+
     dataSet = [];
     for data in titanic.itertuples():
         dataSet.insert(data.Index, {
@@ -66,6 +86,9 @@ def static(request):
         , "circleImgUrl": "circle.png"
         , "joinImgUrl": "join1.png"
         , "join2ImgUrl": "join2.png"
+        , "boxImgUrl": "boxplot.png"
+        , "faceImgUrl": "FacetGrid.png"
+        , "histKdeImgUrl": "histKde.png"
     }
 
     return render(request, 'mydata/static_view.html', context)

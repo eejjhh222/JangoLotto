@@ -10,6 +10,22 @@
 {% for data in staticData %}
 <div>{{ data }}</div>
 {% endfor %}
+
+<div>
+    <h5>히스토그램/커널밀도 그래프</h5>
+    <img src="{{ baseImgUrl }}{{ histKdeImgUrl }}">
+</div>
+
+<div>
+    <h5>복수그래프</h5>
+    <img src="{{ baseImgUrl }}{{ faceImgUrl }}">
+</div>
+
+<div>
+    <h5>상자그래프</h5>
+    <img src="{{ baseImgUrl }}{{ boxImgUrl }}">
+</div>
+
 <div>
     <h5>막대형 그래프</h5>
     <img src="{{ baseImgUrl }}{{ stickImgUrl }}">
