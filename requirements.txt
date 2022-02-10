@@ -57,7 +57,7 @@ decorator @ file:///tmp/build/80754af9/decorator_1617916966915/work
 defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 diff-match-patch @ file:///tmp/build/80754af9/diff-match-patch_1594828741838/work
 distributed @ file:///C:/ci/distributed_1617384289923/work
-Django==3.2.5
+Django==3.2.12
 djangorestframework==3.12.4
 docutils @ file:///C:/ci/docutils_1617481617511/work
 entrypoints==0.3
